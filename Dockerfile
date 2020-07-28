@@ -25,6 +25,5 @@ RUN pip3 install --upgrade pip
 # Install project dependencies
 RUN pip3 install -r requirements.txt
 
-EXPOSE ${PORT}
-
-ENTRYPOINT gunicorn passgen.wsgi --bind 0.0.0.0:$PORT
+EXPOSE 8000
+ENTRYPOINT gunicorn passgen.wsgi --bind "0.0.0.0:$PORT"
