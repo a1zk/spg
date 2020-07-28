@@ -11,6 +11,7 @@ ADD . /app
 # these are 100% optional here
 ENV PORT=8000
 ENV DEBUG=0
+ENV ALLOWED_HOST_ENV=*
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -26,5 +27,4 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
-ENTRYPOINT ["gunicorn"] 
-CMD ["passgen.wsgi", "--bind 0.0.0.0:$PORT"]
+CMD gunicorn passgen.wsgi:application --bind 0.0.0.0:$PORT
