@@ -26,4 +26,5 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
-ENTRYPOINT gunicorn passgen.wsgi --bind "0.0.0.0:$PORT"
+ENTRYPOINT ["gunicorn"] 
+CMD ["passgen.wsgi", "--bind 0.0.0.0:$PORT"]
