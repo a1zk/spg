@@ -4,6 +4,8 @@ FROM python:3.8
 RUN mkdir /app
 WORKDIR /app
 
+ADD . /app
+
 # set project environment variables
 # grab these via Python's os.environ
 # these are 100% optional here
