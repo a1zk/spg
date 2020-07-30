@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+  build:
+    machine: true
+
+    steps:
+      - checkout
+      - run:
+         name: Build Docker image
+         command: docker build -t a1zk/spg:0.1.$CIRCLE_BUILD_NUM
+
+      - run:
+         name: Push to Dockerhub
+         command: |
+           docker login -u $DOCKER_LOGIN -p $DOCKER_PASS
+           docker push a1zk/spg:0.1.$CIRCLE_BUILD_NUM
