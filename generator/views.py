@@ -10,7 +10,7 @@ def home(request):
     return render(request, 'gen/home.html')
 
 def password(request):
-    chars =list('abcdefghIjklmnopqrstuvwxyz')
+    chars =list('abcdefghijklmnopqrstuvwxyz')
     if request.GET.get('uppercase'):
         chars.extend(list('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
     if request.GET.get('special'):

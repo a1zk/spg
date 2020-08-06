@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  build_image:
     machine: true
 
     steps:
@@ -17,3 +17,22 @@ jobs:
            docker login -u $DOCKER_LOGIN -p $DOCKER_PASS
            docker push a1zk/spg:0.1.$CIRCLE_BUILD_NUM
            docker push a1zk/spg:latest
+  test:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run:
+         name: Install dependency
+         command: pip install -r requirements.txt
+      
+      - run:
+         name: Running test
+         command: python manage.py test -v 2
+workflows:
+  test_and_build_image:
+    jobs:
+      - build_image:
+          requires:
+            - test
+      - test
