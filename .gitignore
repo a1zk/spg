@@ -1,3 +1,4 @@
 *.sqlite3
 *.coveragecoverage
 __pycache__/
+**/__pycache__/

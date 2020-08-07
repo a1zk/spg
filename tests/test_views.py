@@ -57,7 +57,7 @@ class TestViews(TestCase):
     
     def test_password_check_numbers(self):
         
-        response = self.client.get('/password/?numbers=on')
+        response = self.client.get('/password/?numbers=on&length=20')
 
         t = any( x.isdigit() for x in response.context['password'])
 
